@@ -1,0 +1,248 @@
+/*-- variable --*/
+:root {
+  --card-height: 30vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+/*-- style header --*/
+body {
+  margin: 0px;
+  background: #212534;
+  color: white;
+  font-family: Helvetica, sans-serif;
+}
+
+header {
+  display: flex;
+  /* background-color: rgb(237, 237, 237); */
+}
+
+h1 {
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/*-- style selecteur --*/
+
+#theChoice {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  font-size: 20px;
+  margin: auto;
+}
+
+select {
+  padding: 10px;
+  border-radius: 0px;
+  border: 2px black solid;
+  font-size: 15px;
+  margin: auto;
+}
+
+/*-- style nombre de groupe --*/
+
+#message {
+  margin: 50px;
+  margin-top: 6%;
+  display: flex;
+}
+
+#message p {
+  margin: auto;
+  font-size: 20px;
+  animation-duration: 1.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 46.2%;
+    width: 100%;
+  }
+}
+
+/*-- style des groupes --*/
+
+#groupes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: auto;
+}
+
+.card {
+  margin: auto;
+  flex-direction: column;
+}
+
+.card p {
+  margin-top: 0px;
+}
+
+/* code volé sur codepen */
+
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  position: relative;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  color: white;
+  transition: color 1s;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 12px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #95f55c,
+    #fcf02d 50%,
+    #e6b035
+  );
+  position: absolute;
+  z-index: -1;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.75);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate),
+    #95f55c,
+    #fcf02d 50%,
+    #e6b035
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+/* même style sur mon select */
+
+#centruum {
+  display: flex;
+  margin-top: 1%;
+}
+
+#aurasTuUneBelleBordure {
+  margin: auto;
+  background-image: linear-gradient(
+    var(--rotate),
+    #95f55c,
+    #fcf02d 50%,
+    #e6b035
+  );
+  border-radius: 12px;
+  height: 48px;
+  display: flex;
+  width: 18.5%;
+}
+#aurasTuUneBelleBordure:before {
+  /* content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: 5px;
+  border-radius: inherit;
+  background: linear-gradient(var(--rotate), #95f55c, #fcf02d 50%, #e6b035); */
+}
+
+#groupSize {
+  /* position: relative; */
+  /* margin-top: 3%; */
+  background: #191c29;
+  border-radius: 10px;
+  color: white;
+  margin: auto;
+  border-style: none;
+  border: 0px;
+  width: 98%;
+}
+
+#groupSize:focus {
+  border-style: none;
+  border: 0px;
+}
+#groupSize select:focus {
+  border-style: none;
+  border: 0px;
+  outline: none !important;
+}
+#groupSize option:checked {
+  border-style: none;
+  border: 0px;
+}
+
+/* #groupSize::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 12px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #95f55c,
+    #fcf02d 50%,
+    #e6b035
+  );
+  position: absolute;
+  z-index: -1;
+  animation: spin 2.5s linear infinite;
+} */
+
+/* laisser afficher les noms des groupes sur la cartes après un hover */
+
+#groupes .card {
+  color: rgba(255, 255, 255, 0);
+  transition: 0s 180s;
+}
+
+#groupes:hover .card {
+  color: rgba(255, 255, 255, 0.99);
+  transition: 0s;
+}
